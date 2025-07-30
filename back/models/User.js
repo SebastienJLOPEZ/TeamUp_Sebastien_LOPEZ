@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -17,6 +16,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+    },
+    sport: {
+        type: String,
+        required: true,
+    },
+    level: {
+        type: String,
+        enum: ['Débutant', 'Intermédiaire', 'Avancé'],
+        default: 'Débutant',
+    },
+    disponibility: {
+        type: String,
+        enum: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'], //Might change later
     },
     password: {
         type: String,
